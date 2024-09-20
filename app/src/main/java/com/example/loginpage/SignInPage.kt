@@ -96,7 +96,11 @@ fun SignInScreen(navController: NavHostController){
             fontSize = 17.sp,
             fontWeight = FontWeight.Light,
             modifier = Modifier.clickable {
-                navController.navigate("create_account")
+                navController.navigate("create_account"){
+                    popUpTo("existing_account"){
+                        inclusive = true
+                    }
+                }
             },
             style = TextStyle(textDecoration = TextDecoration.Underline),
             color = Color.Blue)
