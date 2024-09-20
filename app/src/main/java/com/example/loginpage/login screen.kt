@@ -36,13 +36,17 @@ import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.rememberNavController
 import com.example.loginpage.ui.theme.Logo1
 import com.example.loginpage.ui.theme.colo2
 import com.example.loginpage.ui.theme.color1
 
 
 @Composable
-fun LoginScreen(){
+fun LoginScreen(
+    navController: NavHostController
+){
 
     var name by rememberSaveable {
         mutableStateOf("")
@@ -108,11 +112,16 @@ fun LoginScreen(){
             Text(text = "Sign up")
         }
         Spacer(modifier = Modifier.height(3.dp))
-        Text(text = "Already have an account?", fontSize = 17.sp,
+        Text(
+            text = "Already have an account?",
+            fontSize = 17.sp,
             fontWeight = FontWeight.Light,
-            modifier = Modifier.clickable {  },
+            modifier = Modifier.clickable {
+                navController.navigate("existing_account")
+            },
             style = TextStyle(textDecoration = TextDecoration.Underline),
-            color = Color.Blue)
+            color = Color.Blue
+        )
         Spacer(modifier = Modifier.height(3.dp))
         Text(text = "Forgot password!", fontSize = 17.sp, fontWeight = FontWeight.Light,
             modifier = Modifier.clickable {  },
@@ -142,6 +151,6 @@ fun LoginScreen(){
 @Preview
 @Composable
 fun LoginScreenPreview(){
-    LoginScreen()
+    LoginScreen(navController = rememberNavController())
 }
 
